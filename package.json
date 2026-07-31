@@ -1,6 +1,6 @@
 {
   "name": "@tayaee/sortini",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "A zero-dependency CLI utility to sort INI file sections and keys before diffing",
   "main": "lib/parser.js",
   "bin": {
