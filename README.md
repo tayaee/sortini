@@ -4,7 +4,7 @@
 
 ---
 
-## 🚀 Quickstart
+## Quickstart
 
 Run directly via `npx` (defaults to **in-place edit**, **no backup**, and **auto-encoding**):
 
@@ -38,7 +38,7 @@ npx github:tayaee/sortini#v1.0.1 config.ini
 
 ---
 
-## 📌 Sorting & Formatting Rules
+## Sorting & Formatting Rules
 
 1. **`key=value` Formatting**: Strips spaces around `=` into a clean `key=value` format.
 2. **Global Parameters**: Key-value pairs before any `[section]` stay at the top, sorted alphabetically.
@@ -49,7 +49,7 @@ npx github:tayaee/sortini#v1.0.1 config.ini
 
 ---
 
-## ⚙️ CLI Options
+## CLI Options
 
 | Option | Short | Description |
 | --- | --- | --- |
@@ -64,7 +64,7 @@ npx github:tayaee/sortini#v1.0.1 config.ini
 
 ---
 
-## 🚦 Exit Status
+## Exit Status
 
 | Mode | Exit Code | Condition |
 | --- | --- | --- |
@@ -75,6 +75,6 @@ npx github:tayaee/sortini#v1.0.1 config.ini
 
 ---
 
-## 📄 License
+## License
 
 [MIT License](LICENSE)
