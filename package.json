@@ -1,11 +1,17 @@
 {
   "name": "@tayaee/sortini",
-  "version": "1.0.2",
-  "description": "Sort INI file sections and keys for diffing",
+  "version": "1.0.1",
+  "description": "A zero-dependency CLI utility to sort INI file sections and keys before diffing",
   "main": "lib/parser.js",
   "bin": {
     "sortini": "bin/sortini.js"
   },
+  "files": [
+    "bin",
+    "lib",
+    "README.md",
+    "LICENSE"
+  ],
   "packageManager": "npm@10.8.2",
   "scripts": {
     "test": "node test/test.js",
