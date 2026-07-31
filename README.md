@@ -12,10 +12,6 @@ Run directly via `npx` (defaults to **in-place edit**, **no backup**, and **auto
 # In-place sort (latest version)
 npx @tayaee/sortini config.ini
 
-# Run specific package version from npm
-npx @tayaee/sortini@1.0.0 config.ini
-npx @tayaee/sortini@1.0.1 config.ini
-
 # Preview changes as unified diff without modifying files
 npx @tayaee/sortini -d config.ini
 
@@ -30,10 +26,6 @@ npx @tayaee/sortini --no-in-place config.ini
 ```bash
 # Latest main branch
 npx github:tayaee/sortini config.ini
-
-# Specific Git version tags
-npx github:tayaee/sortini#v1.0.0 config.ini
-npx github:tayaee/sortini#v1.0.1 config.ini
 ```
 
 ---
