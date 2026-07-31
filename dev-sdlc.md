@@ -12,6 +12,9 @@ This repository uses **`npm` (Maximum Compatibility Mode)** as its designated pa
 
 ```
 sortini/
+├── .vscode/
+│   ├── launch.json         # VS Code debug configurations (CLI & Test Debugging)
+│   └── extensions.json     # Recommended VS Code extensions
 ├── bin/
 │   └── sortini.js          # CLI entry point & argument parsing
 ├── lib/
@@ -29,10 +32,13 @@ sortini/
 
 ---
 
-## 2. Prerequisites
+## 2. Prerequisites & VS Code Setup
 
 - **Node.js**: `>=12.0.0` (`node -v`)
 - **npm**: `>=6.0.0` (`npm -v`)
+- **VS Code Debugging**: Press `F5` in VS Code to launch the Node.js debugger using pre-configured profiles in `.vscode/launch.json`:
+  1. `Debug sortini CLI (-d test.ini)`: Debugs CLI execution with breakpoints.
+  2. `Debug Unit Tests (npm test)`: Debugs test execution step-by-step.
 
 ---
 
@@ -72,16 +78,6 @@ Run the test suite:
 ```bash
 npm test
 ```
-
-Tests cover:
-- Section and key alphabetical sorting (`key=value` format)
-- Comment preservation & internal blank line stripping
-- Section spacing (1 blank line separation)
-- Inline comment column alignment (40 / 60 / 80 / overflow) & quote escaping
-- CLI version output verification (`-v` and `--version`)
-- `-d` / `--diff` mode exit code (0 if sorted, 1 if diff exists)
-- In-place overwrite no-op for already-sorted files
-- Error handling for invalid inputs / missing files
 
 ---
 
