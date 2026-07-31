@@ -1,6 +1,6 @@
 {
   "name": "@tayaee/sortini",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Sort INI file sections and keys for diffing",
   "main": "lib/parser.js",
   "bin": {
