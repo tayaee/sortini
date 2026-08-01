@@ -51,6 +51,7 @@ npx github:tayaee/sortini config.ini
 | `--backup` | `-b` | Create a backup (`file-YYYYmmdd-HHMMSS.ini`) before editing in-place |
 | `--no-backup` | - | Do not create a backup file (default) |
 | `--encoding <enc>` | `-e` | File encoding: `auto` (default, preserves BOM), `utf-8`, `latin1`, `utf16le` |
+| `--newline-format <fmt>` | `-n` | Newline format: `windows` (default, CRLF `\r\n`), `linux` (LF `\n`), `macos` (CR `\r`) |
 | `--help` | `-h` | Display help message |
 | `--version` | `-v` | Display version number |
 
