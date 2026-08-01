@@ -30,7 +30,7 @@ fi
 npm publish --access public
 
 echo ""
-echo "=== 🎉 Release v$NEW_VERSION Successfully Synchronized & Published! ==="
+echo "=== Release v$NEW_VERSION Successfully Synchronized & Published! ==="
 echo "GitHub Tag : v$NEW_VERSION"
 echo "npm Version: @tayaee/sortini@$NEW_VERSION"
 echo "Run via npx: npx @tayaee/sortini@latest [options] <file...>"
