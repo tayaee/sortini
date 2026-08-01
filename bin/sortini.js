@@ -18,7 +18,8 @@ Options:
   -d, --diff           Print unified diff without modifying files (exits 1 if diff exists, 0 if sorted)
   -b, --backup         Create a backup (file-YYYYmmdd-HHMMSS.ini) before in-place edit
   --no-backup          Do not create a backup file (default)
-  -e, --encoding <enc> File encoding: 'auto' (default), 'utf-8', 'latin1', 'utf16le', etc.
+  -e, --encoding <enc>     File encoding: 'auto' (default), 'utf-8', 'latin1', 'utf16le', etc.
+  -n, --newline-format <fmt> Newline format: 'windows' (default, CRLF), 'linux' (LF), 'macos' (CR)
   -h, --help           Show help message
   -v, --version        Show version number
 
@@ -119,7 +120,10 @@ function parseArgs(args) {
   let backup = false; // Default: --no-backup
   let backupExplicit = false;
   let encoding = 'auto'; // Default: auto
+  let newlineFormat = 'windows'; // Default: windows
   const files = [];
+
+  const validNewlineFormats = ['linux', 'windows', 'macos'];
 
   for (let i = 0; i < args.length; i++) {
     const arg = args[i];
@@ -150,6 +154,22 @@ function parseArgs(args) {
       encoding = args[++i];
     } else if (arg.startsWith('--encoding=')) {
       encoding = arg.split('=')[1];
+    } else if (arg === '-n' || arg === '--newline-format') {
+      if (i + 1 >= args.length) {
+        console.error('Error: Option --newline-format requires an argument.');
+        process.exit(1);
+      }
+      newlineFormat = args[++i];
+      if (!validNewlineFormats.includes(newlineFormat)) {
+        console.error(`Error: Invalid --newline-format '${newlineFormat}'. Allowed values: linux, windows, macos.`);
+        process.exit(1);
+      }
+    } else if (arg.startsWith('--newline-format=')) {
+      newlineFormat = arg.split('=')[1];
+      if (!validNewlineFormats.includes(newlineFormat)) {
+        console.error(`Error: Invalid --newline-format '${newlineFormat}'. Allowed values: linux, windows, macos.`);
+        process.exit(1);
+      }
     } else if (arg.startsWith('-')) {
       console.error(`Error: Unknown option '${arg}'.`);
       printUsage();
@@ -159,7 +179,7 @@ function parseArgs(args) {
     }
   }
 
-  return { inPlace, diffMode, backup, backupExplicit, encoding, files };
+  return { inPlace, diffMode, backup, backupExplicit, encoding, newlineFormat, files };
 }
 
 function main() {
@@ -169,7 +189,7 @@ function main() {
     process.exit(1);
   }
 
-  const { inPlace, diffMode, backup, backupExplicit, encoding, files } = parseArgs(rawArgs);
+  const { inPlace, diffMode, backup, backupExplicit, encoding, newlineFormat, files } = parseArgs(rawArgs);
 
   if (backup && !inPlace && !diffMode) {
     console.error('Error: Option --backup (-b) can only be used with --in-place (-i).');
@@ -194,7 +214,7 @@ function main() {
       }
 
       const fileMeta = readFileWithEncoding(resolvedPath, encoding);
-      const sortedContent = sortIniContent(fileMeta.content);
+      const sortedContent = sortIniContent(fileMeta.content, newlineFormat);
 
       if (diffMode) {
         // Output diff without modifying file
@@ -215,7 +235,7 @@ function main() {
         }
       } else {
         // Output to stdout
-        process.stdout.write(sortedContent + '\n');
+        process.stdout.write(sortedContent);
       }
     } catch (err) {
       console.error(`Error processing '${filePath}': ${err.message}`);
